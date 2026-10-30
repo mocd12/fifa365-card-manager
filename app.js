@@ -43,7 +43,9 @@ const translations = {
         sectionPrompt: "New section name:",
         filterSection: "Section",
         filterCountry: "Country",
-        filterAll: "All"
+        filterAll: "All",
+        moveSection: "Move to section",
+        toastSectionMoved: "Section updated"
       },
       he: {
         appTitle: "⚽ כרטיסי FIFA 365",
@@ -89,13 +91,14 @@ const translations = {
         sectionPrompt: "שם המדור החדש:",
         filterSection: "מדור",
         filterCountry: "מדינה",
-        filterAll: "הכל"
+        filterAll: "הכל",
+        moveSection: "העבר למדור",
+        toastSectionMoved: "המדור עודכן"
       }
     };
 
     let currentLang = localStorage.getItem('fifa365_lang') || 'en';
 
-    // World Cup 2026 participating countries (EN + HE)
     const COUNTRIES = [
       { en: "Algeria", he: "אלג'יריה" },
       { en: "Argentina", he: "ארגנטינה" },
@@ -158,26 +161,22 @@ const translations = {
       if (!select) return;
       const currentValue = select.value;
       select.innerHTML = '';
-
       const empty = document.createElement('option');
       empty.value = '';
       empty.textContent = '—';
       select.appendChild(empty);
-
       COUNTRIES.forEach(c => {
         const opt = document.createElement('option');
         opt.value = c.en;
-        opt.textContent = currentLang === 'he' ? c.he : c.en;
+        opt.textContent = currentLang === ' 'he' ? c.he : c.en;
         select.appendChild(opt);
       });
-
       if (currentValue) select.value = currentValue;
     }
 
     function applyLanguage() {
       document.documentElement.lang = currentLang;
       document.documentElement.dir = currentLang === 'he' ? 'rtl' : 'ltr';
-
       document.getElementById('appTitle').textContent = t('appTitle');
       document.getElementById('langBtn').textContent = t('langBtn');
       document.getElementById('tabCollection').textContent = t('tabCollection');
@@ -198,7 +197,6 @@ const translations = {
       document.getElementById('labelAttack').textContent = t('labelAttack');
       document.getElementById('labelTotal').textContent = t('labelTotal');
       document.getElementById('submitBtn').textContent = t('submitBtn');
-
       populateCountrySelect();
       populateSectionSelect();
       renderSectionFilter();
@@ -228,16 +226,12 @@ const translations = {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         collection = raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        collection = [];
-      }
+      } catch (e) { collection = []; }
       try {
         const sec = localStorage.getItem(SECTIONS_KEY);
         sections = sec ? JSON.parse(sec) : ['General'];
         if (!sections.includes('General')) sections.unshift('General');
-      } catch (e) {
-        sections = ['General'];
-      }
+      } catch (e) { sections = ['General']; }
     }
 
     function saveData() {
@@ -275,7 +269,6 @@ const translations = {
       el.innerHTML = chips.map(c =>
         `<button type="button" class="section-chip ${activeSectionFilter === c.key ? 'active' : ''}" onclick="setSectionFilter('${c.key}')">${c.label}</button>`
       ).join('');
-
       const secLabel = document.getElementById('filterSectionLabel');
       if (secLabel) secLabel.textContent = t('filterSection');
       const ctryLabel = document.getElementById('filterCountryLabel');
@@ -355,9 +348,7 @@ const translations = {
       void el.offsetWidth;
       el.classList.add('show');
       clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => {
-        el.classList.remove('show');
-      }, 2800);
+      window._toastTimer = setTimeout(() => { el.classList.remove('show'); }, 2800);
     }
 
     function updateHeaderCount() {
@@ -383,20 +374,16 @@ const translations = {
       const grid = document.getElementById('collectionGrid');
       const empty = document.getElementById('collectionEmpty');
       const q = filter.toLowerCase().trim();
-
       let items = [...collection];
-
       if (activeSectionFilter !== 'all') {
         items = items.filter(c => (c.section || 'General') === activeSectionFilter);
       }
-
       if (activeCountryFilter !== 'all') {
         items = items.filter(c => {
           const key = (c.country && c.country.en) || (typeof c.country === 'string' ? c.country : '');
           return key === activeCountryFilter;
         });
       }
-
       if (q) {
         items = items.filter(c => {
           const name = getLocalized(c.name).toLowerCase();
@@ -406,20 +393,16 @@ const translations = {
           return name.includes(q) || country.includes(q) || id.includes(q) || sec.includes(q);
         });
       }
-
       const totalQty = collection.reduce((s, c) => s + (c.quantity || 1), 0);
       document.getElementById('statTotal').textContent = totalQty;
       document.getElementById('statUnique').textContent = collection.length;
-
       grid.classList.toggle('list-view', viewMode === 'list');
-
       if (items.length === 0) {
         grid.innerHTML = '';
         empty.style.display = 'block';
         return;
       }
       empty.style.display = 'none';
-
       grid.innerHTML = items.map(c => {
         const name = getLocalized(c.name) || '—';
         const country = getCountryLabel(c.country) || '';
@@ -428,10 +411,7 @@ const translations = {
           <div class="card-item" onclick="openDetail('${c.id}')">
             <div class="card-thumb">
               <span class="number">#${c.cardId || '?'}</span>
-              ${c.photo
-                ? `<img src="${c.photo}" alt="${name}" />`
-                : `<div class="player-initial">${name.charAt(0)}</div>`
-              }
+              ${c.photo ? `<img src="${c.photo}" alt="${name}" />` : `<div class="player-initial">${name.charAt(0)}</div>`}
               ${(c.quantity || 1) > 1 ? `<span class="qty-badge">${c.quantity}</span>` : ''}
             </div>
             <div class="card-info">
@@ -446,12 +426,13 @@ const translations = {
     function openDetail(id) {
       const card = collection.find(c => c.id === id);
       if (!card) return;
-
       const name = getLocalized(card.name) || '—';
       const country = getCountryLabel(card.country) || '—';
-
+      const currentSection = card.section || 'General';
+      const sectionOptions = sections.map(s =>
+        `<option value="${s}" ${s === currentSection ? 'selected' : ''}>${getSectionLabel(s)}</option>`
+      ).join('');
       document.getElementById('modalTitle').textContent = name;
-
       document.getElementById('modalBody').innerHTML = `
         <div class="detail-hero">
           <span class="big-number">#${card.cardId || '?'}</span>
@@ -460,36 +441,45 @@ const translations = {
           <div class="big-country">${country}</div>
         </div>
         <div class="stats-row">
-          <div class="stat-box defence">
-            <div class="label">${t('defence')}</div>
-            <div class="value">${card.defence ?? '—'}</div>
-          </div>
-          <div class="stat-box midfield">
-            <div class="label">${t('midfield')}</div>
-            <div class="value">${card.midfield ?? '—'}</div>
-          </div>
-          <div class="stat-box attack">
-            <div class="label">${t('attack')}</div>
-            <div class="value">${card.attack ?? '—'}</div>
-          </div>
-          <div class="stat-box total">
-            <div class="label">${t('total')}</div>
-            <div class="value">${card.total ?? '—'}</div>
-          </div>
+          <div class="stat-box defence"><div class="label">${t('defence')}</div><div class="value">${card.defence ?? '—'}</div></div>
+          <div class="stat-box midfield"><div class="label">${t('midfield')}</div><div class="value">${card.midfield ?? '—'}</div></div>
+          <div class="stat-box attack"><div class="label">${t('attack')}</div><div class="value">${card.attack ?? '—'}</div></div>
+          <div class="stat-box total"><div class="label">${t('total')}</div><div class="value">${card.total ?? '—'}</div></div>
         </div>
         <div class="info-list">
           <div class="info-row"><span>${t('cardId')}</span><span>${card.cardId || '—'}</span></div>
-          <div class="info-row"><span>${t('section')}</span><span>${getSectionLabel(card.section || 'General')}</span></div>
           <div class="info-row"><span>${t('country')}</span><span>${country}</span></div>
           <div class="info-row"><span>${t('owned')}</span><span>${card.quantity || 1}×</span></div>
+        </div>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label>${t('section')}</label>
+          <select id="detailSectionSelect" class="filter-select" style="width:100%;">
+            ${sectionOptions}
+          </select>
+        </div>
+        <div class="btn-row" style="margin-bottom:12px;">
+          <button class="btn btn-primary" onclick="changeCardSection('${id}')">${t('moveSection')}</button>
         </div>
         <div class="btn-row">
           <button class="btn btn-danger" onclick="removeOne('${id}')">${t('removeOne')}</button>
           <button class="btn btn-secondary" onclick="addDuplicate('${id}')">${t('addDuplicate')}</button>
         </div>
       `;
-
       document.getElementById('detailModal').classList.add('open');
+    }
+
+    function changeCardSection(id) {
+      const card = collection.find(c => c.id === id);
+      if (!card) return;
+      const select = document.getElementById('detailSectionSelect');
+      if (!select) return;
+      card.section = select.value || 'General';
+      saveData();
+      renderSectionFilter();
+      populateCountryFilter();
+      renderCollection(document.getElementById('searchCollection').value);
+      closeModal();
+      showToast(t('toastSectionMoved'));
     }
 
     function closeModal() {
@@ -535,32 +525,24 @@ const translations = {
 
     document.getElementById('addForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
       const nameVal = document.getElementById('name').value.trim();
       const cardIdVal = document.getElementById('cardId').value.trim();
-
       if (!nameVal || !cardIdVal) {
         showToast(t('toastRequired'), true);
         return;
       }
-
       const defence = parseInt(document.getElementById('defence').value) || null;
       const midfield = parseInt(document.getElementById('midfield').value) || null;
       const attack = parseInt(document.getElementById('attack').value) || null;
       let total = parseInt(document.getElementById('total').value) || null;
-
       if (!total && defence != null && midfield != null && attack != null) {
         total = defence + midfield + attack;
       }
-
       const countryVal = document.getElementById('country').value.trim();
       const sectionVal = (document.getElementById('section') && document.getElementById('section').value) || 'General';
-
       const nameObj = { en: '', he: '' };
       nameObj[currentLang] = nameVal;
-
       const countryObj = { en: countryVal || '', he: '' };
-
       const existing = collection.find(c => c.cardId === cardIdVal);
       if (existing) {
         existing.quantity = (existing.quantity || 1) + 1;
@@ -575,28 +557,22 @@ const translations = {
           name: nameObj,
           country: countryObj,
           section: sectionVal,
-          defence,
-          midfield,
-          attack,
-          total,
+          defence, midfield, attack, total,
           photo: currentPhoto,
           quantity: 1,
           addedAt: new Date().toISOString()
         });
       }
-
       saveData();
       populateCountryFilter();
       renderSectionFilter();
       renderCollection();
-
       this.reset();
       currentPhoto = null;
       document.getElementById('cameraPreview').classList.remove('visible');
       document.getElementById('cameraPreview').src = '';
       populateSectionSelect();
       populateCountrySelect();
-
       switchView('collection');
       showToast(t('toastAdded'));
     });
