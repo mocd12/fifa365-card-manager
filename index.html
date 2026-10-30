@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="FIFA 365 Cards" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon.svg" />
   <title>FIFA 365 Card Manager</title>
   <style>
     :root {
@@ -25,9 +25,7 @@
       --border: #334155;
       --radius: 14px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
@@ -35,11 +33,9 @@
       min-height: 100vh;
       padding-bottom: 40px;
     }
-
     [dir="rtl"] body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans Hebrew", sans-serif;
     }
-
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
       padding: 16px 20px 12px;
@@ -52,11 +48,8 @@
       justify-content: space-between;
       gap: 12px;
     }
-
     header h1 { font-size: 1.2rem; font-weight: 700; flex: 1; }
-
     .header-actions { display: flex; align-items: center; gap: 10px; }
-
     header .badge {
       background: var(--accent);
       color: #0f172a;
@@ -67,7 +60,6 @@
       min-width: 24px;
       text-align: center;
     }
-
     .lang-btn {
       background: rgba(255,255,255,0.1);
       border: 1px solid var(--border);
@@ -78,7 +70,6 @@
       border-radius: 999px;
       cursor: pointer;
     }
-
     .tabs {
       display: flex;
       background: var(--card-bg);
@@ -87,7 +78,6 @@
       top: 57px;
       z-index: 90;
     }
-
     .tab {
       flex: 1;
       text-align: center;
@@ -98,22 +88,14 @@
       cursor: pointer;
       border-bottom: 3px solid transparent;
     }
-
-    .tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
     .view { display: none; padding: 16px; animation: fadeIn 0.25s ease; }
     .view.active { display: block; }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .search-bar { margin-bottom: 16px; position: relative; }
-
     .search-bar input {
       width: 100%;
       padding: 12px 16px 12px 42px;
@@ -124,10 +106,8 @@
       font-size: 1rem;
       outline: none;
     }
-
     [dir="rtl"] .search-bar input { padding: 12px 42px 12px 16px; }
     .search-bar input:focus { border-color: var(--accent); }
-
     .search-bar::before {
       content: "🔍";
       position: absolute;
@@ -136,11 +116,8 @@
       transform: translateY(-50%);
       opacity: 0.7;
     }
-
     [dir="rtl"] .search-bar::before { left: auto; right: 14px; }
-
     .stats-bar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
-
     .stat-pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -149,61 +126,20 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-
     .stat-pill strong { color: var(--text); }
-
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 14px;
     }
-
-    .card-grid.list-view {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-
-    .card-grid.list-view .card-item {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .card-grid.list-view .card-thumb {
-      width: 72px;
-      min-width: 72px;
-      aspect-ratio: 2.5 / 3.5;
-      border-radius: 0;
-    }
-
-    .card-grid.list-view .card-info {
-      flex: 1;
-      padding: 10px 14px;
-    }
-
-    .card-grid.list-view .player-initial {
-      font-size: 1.6rem;
-    }
-
-    .filters-panel {
-      margin-bottom: 14px;
-    }
-
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 8px;
-      align-items: center;
-    }
-
-    .filter-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-weight: 600;
-      min-width: 56px;
-    }
-
+    .card-grid.list-view { grid-template-columns: 1fr; gap: 8px; }
+    .card-grid.list-view .card-item { display: flex; flex-direction: row; align-items: center; }
+    .card-grid.list-view .card-thumb { width: 72px; min-width: 72px; aspect-ratio: 2.5 / 3.5; border-radius: 0; }
+    .card-grid.list-view .card-info { flex: 1; padding: 10px 14px; }
+    .card-grid.list-view .player-initial { font-size: 1.6rem; }
+    .filters-panel { margin-bottom: 14px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; align-items: center; }
+    .filter-label { font-size: 0.75rem; color: var(--muted); font-weight: 600; min-width: 56px; }
     .section-chip, .filter-chip {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -213,14 +149,12 @@
       color: var(--muted);
       cursor: pointer;
     }
-
     .section-chip.active, .filter-chip.active {
       background: var(--accent);
       color: #0f172a;
       border-color: var(--accent);
       font-weight: 700;
     }
-
     .filter-select {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -230,18 +164,8 @@
       font-size: 0.85rem;
       outline: none;
     }
-
-    .filter-select:focus {
-      border-color: var(--accent);
-    }
-
-    .view-toggle {
-      cursor: pointer;
-      border: none;
-      color: var(--text);
-    }
-
-    .stat-pill button,
+    .filter-select:focus { border-color: var(--accent); }
+    .view-toggle { cursor: pointer; border: none; color: var(--text); }
     button.stat-pill {
       cursor: pointer;
       border: 1px solid var(--border);
@@ -249,7 +173,6 @@
       color: var(--muted);
       font: inherit;
     }
-
     .card-item {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -258,9 +181,7 @@
       cursor: pointer;
       position: relative;
     }
-
     .card-item:active { transform: scale(0.97); }
-
     .card-thumb {
       width: 100%;
       aspect-ratio: 2.5 / 3.5;
@@ -272,9 +193,7 @@
       position: relative;
       overflow: hidden;
     }
-
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
     .card-thumb .number {
       position: absolute;
       top: 8px;
@@ -287,17 +206,13 @@
       border-radius: 6px;
       z-index: 2;
     }
-
     [dir="rtl"] .card-thumb .number { left: auto; right: 8px; }
-
     .card-thumb .player-initial {
       font-size: 2.8rem;
       font-weight: 800;
       color: rgba(255,255,255,0.15);
     }
-
     .card-info { padding: 10px 12px 12px; }
-
     .card-info .name {
       font-weight: 700;
       font-size: 0.95rem;
@@ -305,13 +220,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    .card-info .meta {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
+    .card-info .meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
     .qty-badge {
       position: absolute;
       bottom: 8px;
@@ -328,12 +237,9 @@
       justify-content: center;
       z-index: 2;
     }
-
     [dir="rtl"] .qty-badge { right: auto; left: 8px; }
-
     .empty { text-align: center; padding: 48px 20px; color: var(--muted); }
     .empty .icon { font-size: 3rem; margin-bottom: 12px; }
-
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -343,9 +249,7 @@
       align-items: flex-end;
       justify-content: center;
     }
-
     .modal-overlay.open { display: flex; }
-
     .modal {
       background: var(--card-bg);
       width: 100%;
@@ -355,12 +259,10 @@
       overflow-y: auto;
       animation: slideUp 0.3s ease;
     }
-
     @keyframes slideUp {
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
     }
-
     .modal-header {
       padding: 16px 20px;
       display: flex;
@@ -372,9 +274,7 @@
       background: var(--card-bg);
       z-index: 10;
     }
-
     .modal-header h2 { font-size: 1.15rem; }
-
     .close-btn {
       background: none;
       border: none;
@@ -383,9 +283,7 @@
       cursor: pointer;
       padding: 4px 8px;
     }
-
     .modal-body { padding: 20px; }
-
     .detail-hero {
       background: linear-gradient(160deg, #1e3a5f, #0f172a);
       border-radius: 16px;
@@ -395,7 +293,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .detail-hero img {
       max-width: 140px;
       max-height: 200px;
@@ -403,7 +300,6 @@
       margin-bottom: 12px;
       object-fit: contain;
     }
-
     .detail-hero .big-number {
       position: absolute;
       top: 12px;
@@ -415,42 +311,33 @@
       padding: 4px 10px;
       border-radius: 8px;
     }
-
     [dir="rtl"] .detail-hero .big-number { left: auto; right: 12px; }
-
     .detail-hero .big-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
     .detail-hero .big-country { color: var(--muted); font-size: 0.95rem; }
-
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-bottom: 24px;
     }
-
     .stat-box {
       background: rgba(255,255,255,0.05);
       border-radius: 12px;
       padding: 12px 8px;
       text-align: center;
     }
-
     .stat-box .label {
       font-size: 0.7rem;
       color: var(--muted);
       text-transform: uppercase;
       margin-bottom: 4px;
     }
-
     .stat-box .value { font-size: 1.35rem; font-weight: 800; }
-
     .stat-box.defence .value { color: var(--red); }
     .stat-box.midfield .value { color: var(--blue); }
     .stat-box.attack .value { color: var(--green); }
     .stat-box.total .value { color: var(--yellow); }
-
     .info-list { margin-bottom: 24px; }
-
     .info-row {
       display: flex;
       justify-content: space-between;
@@ -458,11 +345,8 @@
       border-bottom: 1px solid var(--border);
       font-size: 0.95rem;
     }
-
     .info-row span:first-child { color: var(--muted); }
-
     .btn-row { display: flex; gap: 12px; }
-
     .btn {
       flex: 1;
       padding: 14px;
@@ -472,14 +356,11 @@
       font-weight: 700;
       cursor: pointer;
     }
-
     .btn:active { opacity: 0.85; }
     .btn-primary { background: var(--accent); color: #0f172a; }
     .btn-danger { background: var(--red); color: white; }
     .btn-secondary { background: var(--border); color: var(--text); }
-
     .form-group { margin-bottom: 16px; }
-
     .form-group label {
       display: block;
       font-size: 0.85rem;
@@ -487,7 +368,6 @@
       margin-bottom: 6px;
       font-weight: 600;
     }
-
     .form-group input,
     .form-group select {
       width: 100%;
@@ -501,29 +381,20 @@
       -webkit-appearance: none;
       appearance: none;
     }
-
     .form-group select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a3b8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       padding-right: 36px;
     }
-
     [dir="rtl"] .form-group select {
       background-position: left 14px center;
       padding-right: 14px;
       padding-left: 36px;
     }
-
     .form-group input:focus,
     .form-group select:focus { border-color: var(--accent); }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .camera-section {
       background: var(--card-bg);
       border: 1px dashed var(--border);
@@ -532,13 +403,7 @@
       text-align: center;
       margin-bottom: 20px;
     }
-
-    .camera-section p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
-
+    .camera-section p { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
     .camera-preview {
       max-width: 100%;
       max-height: 220px;
@@ -546,9 +411,7 @@
       margin: 12px auto 0;
       display: none;
     }
-
     .camera-preview.visible { display: block; }
-
     .toast {
       position: fixed;
       bottom: 40px;
@@ -568,63 +431,8 @@
       text-align: center;
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast.error { background: var(--red); color: white; }
-
-    .install-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      padding: 16px 18px calc(16px + env(safe-area-inset-bottom));
-      z-index: 10000;
-      display: none;
-      box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
-      animation: slideUp 0.3s ease;
-    }
-
-    .install-banner.show { display: block; }
-
-    .install-banner-inner {
-      max-width: 480px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .install-banner-text {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: var(--text);
-    }
-
-    .install-banner-text strong { color: var(--accent); }
-
-    .install-banner-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .install-banner-actions .btn {
-      flex: 1;
-      padding: 12px;
-      font-size: 0.95rem;
-    }
-
-    .install-ios-steps {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-top: 4px;
-    }
   </style>
 </head>
 <body>
@@ -635,12 +443,10 @@
       <span class="badge" id="collectionCount">0</span>
     </div>
   </header>
-
   <div class="tabs">
     <div class="tab active" data-view="collection" id="tabCollection">My Collection</div>
     <div class="tab" data-view="add" id="tabAdd">Add Card</div>
   </div>
-
   <div id="collection" class="view active">
     <div class="search-bar">
       <input type="search" id="searchCollection" placeholder="Search name, country, ID..." />
@@ -669,23 +475,18 @@
       <p id="emptyText">Your collection is empty.<br>Add your first card!</p>
     </div>
   </div>
-
   <div id="add" class="view">
     <div class="camera-section">
       <p id="cameraHint">📷 Optional: take a photo of the card (for your reference)</p>
       <input type="file" id="cameraInput" accept="image/*" style="display:none;" />
-      <button class="btn btn-secondary" style="width:auto;padding:12px 24px;" id="cameraBtn" onclick="document.getElementById('cameraInput').click()">
-        Camera / Photo Library
-      </button>
+      <button class="btn btn-secondary" style="width:auto;padding:12px 24px;" id="cameraBtn" onclick="document.getElementById('cameraInput').click()">Camera / Photo Library</button>
       <img id="cameraPreview" class="camera-preview" alt="Preview" />
     </div>
-
     <form id="addForm">
       <div class="form-group">
         <label id="labelName">Name *</label>
         <input type="text" id="name" required />
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label id="labelCardId">Card ID *</label>
@@ -696,12 +497,10 @@
           <select id="section"></select>
         </div>
       </div>
-
       <div class="form-group">
         <label id="labelCountry">Country</label>
         <select id="country"></select>
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label id="labelDefence">Defence</label>
@@ -712,7 +511,6 @@
           <input type="number" id="midfield" min="0" max="200" />
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label id="labelAttack">Attack</label>
@@ -723,13 +521,9 @@
           <input type="number" id="total" min="0" max="600" />
         </div>
       </div>
-
-      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;" id="submitBtn">
-        ➕ Add to Collection
-      </button>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;" id="submitBtn">➕ Add to Collection</button>
     </form>
   </div>
-
   <div class="modal-overlay" id="detailModal">
     <div class="modal">
       <div class="modal-header">
@@ -739,782 +533,7 @@
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
-
   <div class="toast" id="toast"></div>
-
-  <div class="install-banner" id="installBanner">
-    <div class="install-banner-inner">
-      <div class="install-banner-text" id="installBannerText">
-        <strong>Install FIFA 365 Cards</strong><br>
-        Add this app to your home screen for quick access.
-      </div>
-      <div class="install-ios-steps" id="installIosSteps" style="display:none;"></div>
-      <div class="install-banner-actions">
-        <button type="button" class="btn btn-secondary" id="installDismissBtn" onclick="dismissInstallBanner()">Not now</button>
-        <button type="button" class="btn btn-primary" id="installAcceptBtn" onclick="acceptInstall()">Install</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const translations = {
-      en: {
-        appTitle: "⚽ FIFA 365 Cards",
-        langBtn: "עב",
-        tabCollection: "My Collection",
-        tabAdd: "Add Card",
-        searchCollection: "Search name, country, ID...",
-        labelCards: "Cards",
-        labelUnique: "Unique",
-        emptyText: "Your collection is empty.<br>Add your first card!",
-        cameraHint: "📷 Optional: take a photo of the card (for your reference)",
-        cameraBtn: "Camera / Photo Library",
-        labelName: "Name *",
-        labelCardId: "Card ID *",
-        labelCountry: "Country",
-        labelSection: "Section",
-        labelDefence: "Defence",
-        labelMidfield: "Midfield",
-        labelAttack: "Attack",
-        labelTotal: "Total",
-        submitBtn: "➕ Add to Collection",
-        modalTitle: "Card Details",
-        toastAdded: "Card added!",
-        toastRemoved: "Card removed",
-        toastRequired: "Name and Card ID are required",
-        toastSectionAdded: "Section added",
-        owned: "Owned",
-        removeOne: "Remove 1",
-        addDuplicate: "+1 Duplicate",
-        defence: "Defence",
-        midfield: "Midfield",
-        attack: "Attack",
-        total: "Total",
-        country: "Country",
-        section: "Section",
-        cardId: "Card ID",
-        no: "No",
-        allSections: "All",
-        generalSection: "General",
-        listView: "☰ List",
-        gridView: "▦ Grid",
-        addSection: "+ Section",
-        sectionPrompt: "New section name:",
-        filterSection: "Section",
-        filterCountry: "Country",
-        filterAll: "All",
-        moveSection: "Move to section",
-        toastSectionMoved: "Section updated",
-        installTitle: "Install FIFA 365 Cards",
-        installBody: "Add this app to your home screen for quick access.",
-        installDismiss: "Not now",
-        installAccept: "Install",
-        installIosSteps: "1. Tap the Share button ↓\n2. Choose “Add to Home Screen”\n3. Tap Add"
-      },
-      he: {
-        appTitle: "⚽ כרטיסי FIFA 365",
-        langBtn: "EN",
-        tabCollection: "האוסף שלי",
-        tabAdd: "הוסף כרטיס",
-        searchCollection: "חיפוש לפי שם, מדינה, מזהה...",
-        labelCards: "כרטיסים",
-        labelUnique: "ייחודיים",
-        emptyText: "האוסף שלך ריק.<br>הוסף את הכרטיס הראשון!",
-        cameraHint: "📷 אופציונלי: צלם את הכרטיס (לשמירה)",
-        cameraBtn: "מצלמה / ספריית תמונות",
-        labelName: "שם *",
-        labelCardId: "מזהה כרטיס *",
-        labelCountry: "מדינה",
-        labelSection: "מדור",
-        labelDefence: "הגנה",
-        labelMidfield: "קישור",
-        labelAttack: "התקפה",
-        labelTotal: "סה״כ",
-        submitBtn: "➕ הוסף לאוסף",
-        modalTitle: "פרטי כרטיס",
-        toastAdded: "הכרטיס נוסף!",
-        toastRemoved: "הכרטיס הוסר",
-        toastRequired: "שם ומזהה כרטיס הם שדות חובה",
-        toastSectionAdded: "המדור נוסף",
-        owned: "בבעלות",
-        removeOne: "הסר 1",
-        addDuplicate: "+1 כפול",
-        defence: "הגנה",
-        midfield: "קישור",
-        attack: "התקפה",
-        total: "סה״כ",
-        country: "מדינה",
-        section: "מדור",
-        cardId: "מזהה כרטיס",
-        no: "לא",
-        allSections: "הכל",
-        generalSection: "כללי",
-        listView: "☰ רשימה",
-        gridView: "▦ רשת",
-        addSection: "+ מדור",
-        sectionPrompt: "שם המדור החדש:",
-        filterSection: "מדור",
-        filterCountry: "מדינה",
-        filterAll: "הכל",
-        moveSection: "העבר למדור",
-        toastSectionMoved: "המדור עודכן",
-        installTitle: "התקן את כרטיסי FIFA 365",
-        installBody: "הוסף את האפליקציה למסך הבית לגישה מהירה.",
-        installDismiss: "לא עכשיו",
-        installAccept: "התקן",
-        installIosSteps: "1. לחץ על כפתור השיתוף ↓\n2. בחר \"הוסף למסך הבית\"\n3. לחץ הוסף"
-      }
-    };
-
-    let currentLang = localStorage.getItem('fifa365_lang') || 'en';
-
-    // World Cup 2026 participating countries (EN + HE)
-    const COUNTRIES = [
-      { en: "Algeria", he: "אלג'יריה" },
-      { en: "Argentina", he: "ארגנטינה" },
-      { en: "Australia", he: "אוסטרליה" },
-      { en: "Austria", he: "אוסטריה" },
-      { en: "Belgium", he: "בלגיה" },
-      { en: "Bosnia and Herzegovina", he: "בוסניה והרצגובינה" },
-      { en: "Brazil", he: "ברזיל" },
-      { en: "Canada", he: "קנדה" },
-      { en: "Cape Verde", he: "כף ורדה" },
-      { en: "Colombia", he: "קולומביה" },
-      { en: "Croatia", he: "קרואטיה" },
-      { en: "Curaçao", he: "קוראסאו" },
-      { en: "Czech Republic", he: "צ'כיה" },
-      { en: "DR Congo", he: "הרפובליקה הדמוקרטית של קונגו" },
-      { en: "Ecuador", he: "אקוודור" },
-      { en: "Egypt", he: "מצרים" },
-      { en: "England", he: "אנגליה" },
-      { en: "France", he: "צרפת" },
-      { en: "Germany", he: "גרמניה" },
-      { en: "Ghana", he: "גאנה" },
-      { en: "Haiti", he: "האיטי" },
-      { en: "Iran", he: "איראן" },
-      { en: "Iraq", he: "עיראק" },
-      { en: "Italy", he: "איטליה" },
-      { en: "Ivory Coast", he: "חוף השנהב" },
-      { en: "Japan", he: "יפן" },
-      { en: "Jordan", he: "ירדן" },
-      { en: "Mexico", he: "מקסיקו" },
-      { en: "Morocco", he: "מרוקו" },
-      { en: "Netherlands", he: "הולנד" },
-      { en: "New Zealand", he: "ניו זילנד" },
-      { en: "Norway", he: "נורווגיה" },
-      { en: "Panama", he: "פנמה" },
-      { en: "Paraguay", he: "פרגוואי" },
-      { en: "Portugal", he: "פורטוגל" },
-      { en: "Qatar", he: "קטאר" },
-      { en: "Saudi Arabia", he: "ערב הסעודית" },
-      { en: "Scotland", he: "סקוטלנד" },
-      { en: "Senegal", he: "סנגל" },
-      { en: "South Africa", he: "דרום אפריקה" },
-      { en: "South Korea", he: "דרום קוריאה" },
-      { en: "Spain", he: "ספרד" },
-      { en: "Sweden", he: "שוודיה" },
-      { en: "Switzerland", he: "שווייץ" },
-      { en: "Tunisia", he: "תוניסיה" },
-      { en: "Turkey", he: "טורקיה" },
-      { en: "United States", he: "ארצות הברית" },
-      { en: "Uruguay", he: "אורוגוואי" },
-      { en: "Uzbekistan", he: "אוזבקיסטן" },
-      { en: "Other", he: "אחר" }
-    ];
-
-    function t(key) {
-      return translations[currentLang][key] || translations.en[key] || key;
-    }
-
-    function populateCountrySelect() {
-      const select = document.getElementById('country');
-      if (!select) return;
-      const currentValue = select.value;
-      select.innerHTML = '';
-
-      const empty = document.createElement('option');
-      empty.value = '';
-      empty.textContent = '—';
-      select.appendChild(empty);
-
-      COUNTRIES.forEach(c => {
-        const opt = document.createElement('option');
-        opt.value = c.en; // always store English key
-        opt.textContent = currentLang === 'he' ? c.he : c.en;
-        select.appendChild(opt);
-      });
-
-      if (currentValue) select.value = currentValue;
-    }
-
-    function applyLanguage() {
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = currentLang === 'he' ? 'rtl' : 'ltr';
-
-      document.getElementById('appTitle').textContent = t('appTitle');
-      document.getElementById('langBtn').textContent = t('langBtn');
-      document.getElementById('tabCollection').textContent = t('tabCollection');
-      document.getElementById('tabAdd').textContent = t('tabAdd');
-      document.getElementById('searchCollection').placeholder = t('searchCollection');
-      document.getElementById('labelCards').textContent = t('labelCards');
-      document.getElementById('labelUnique').textContent = t('labelUnique');
-      document.getElementById('emptyText').innerHTML = t('emptyText');
-      document.getElementById('cameraHint').textContent = t('cameraHint');
-      document.getElementById('cameraBtn').textContent = t('cameraBtn');
-      document.getElementById('labelName').textContent = t('labelName');
-      document.getElementById('labelCardId').textContent = t('labelCardId');
-      document.getElementById('labelCountry').textContent = t('labelCountry');
-      const labelSection = document.getElementById('labelSection');
-      if (labelSection) labelSection.textContent = t('labelSection');
-      document.getElementById('labelDefence').textContent = t('labelDefence');
-      document.getElementById('labelMidfield').textContent = t('labelMidfield');
-      document.getElementById('labelAttack').textContent = t('labelAttack');
-      document.getElementById('labelTotal').textContent = t('labelTotal');
-      document.getElementById('submitBtn').textContent = t('submitBtn');
-
-      populateCountrySelect();
-      populateSectionSelect();
-      renderSectionFilter();
-      populateCountryFilter();
-      updateViewToggleLabel();
-      renderCollection(document.getElementById('searchCollection').value);
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'he' : 'en';
-      localStorage.setItem('fifa365_lang', currentLang);
-      applyLanguage();
-    }
-
-    const STORAGE_KEY = 'fifa365_collection_v2';
-    const SECTIONS_KEY = 'fifa365_sections_v1';
-    const VIEW_KEY = 'fifa365_view_mode';
-
-    let collection = [];
-    let sections = ['General']; // always include General
-    let currentPhoto = null;
-    let activeSectionFilter = 'all';
-    let activeCountryFilter = 'all';
-    let viewMode = localStorage.getItem(VIEW_KEY) || 'grid'; // grid | list
-
-    function loadData() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        collection = raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        collection = [];
-      }
-      try {
-        const sec = localStorage.getItem(SECTIONS_KEY);
-        sections = sec ? JSON.parse(sec) : ['General'];
-        if (!sections.includes('General')) sections.unshift('General');
-      } catch (e) {
-        sections = ['General'];
-      }
-    }
-
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
-      localStorage.setItem(SECTIONS_KEY, JSON.stringify(sections));
-      updateHeaderCount();
-    }
-
-    function getSectionLabel(key) {
-      if (key === 'General') return t('generalSection');
-      return key;
-    }
-
-    function populateSectionSelect() {
-      const select = document.getElementById('section');
-      if (!select) return;
-      const current = select.value;
-      select.innerHTML = '';
-      sections.forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = s;
-        opt.textContent = getSectionLabel(s);
-        select.appendChild(opt);
-      });
-      select.value = current && sections.includes(current) ? current : 'General';
-    }
-
-    function renderSectionFilter() {
-      const el = document.getElementById('sectionFilter');
-      if (!el) return;
-      const chips = [
-        { key: 'all', label: t('filterAll') },
-        ...sections.map(s => ({ key: s, label: getSectionLabel(s) }))
-      ];
-      el.innerHTML = chips.map(c =>
-        `<button type="button" class="section-chip ${activeSectionFilter === c.key ? 'active' : ''}" onclick="setSectionFilter('${c.key}')">${c.label}</button>`
-      ).join('');
-
-      const secLabel = document.getElementById('filterSectionLabel');
-      if (secLabel) secLabel.textContent = t('filterSection');
-      const ctryLabel = document.getElementById('filterCountryLabel');
-      if (ctryLabel) ctryLabel.textContent = t('filterCountry');
-    }
-
-    function populateCountryFilter() {
-      const select = document.getElementById('countryFilter');
-      if (!select) return;
-      const used = new Set();
-      collection.forEach(c => {
-        const key = (c.country && c.country.en) || (typeof c.country === 'string' ? c.country : '');
-        if (key) used.add(key);
-      });
-      const prev = select.value || activeCountryFilter;
-      select.innerHTML = `<option value="all">${t('filterAll')}</option>`;
-      Array.from(used).sort().forEach(key => {
-        const opt = document.createElement('option');
-        opt.value = key;
-        opt.textContent = getCountryLabel(key);
-        select.appendChild(opt);
-      });
-      select.value = prev && (prev === 'all' || used.has(prev)) ? prev : 'all';
-      activeCountryFilter = select.value;
-    }
-
-    function setSectionFilter(key) {
-      activeSectionFilter = key;
-      renderSectionFilter();
-      renderCollection(document.getElementById('searchCollection').value);
-    }
-
-    function setCountryFilter(key) {
-      activeCountryFilter = key || 'all';
-      renderCollection(document.getElementById('searchCollection').value);
-    }
-
-    function promptAddSection() {
-      const name = prompt(t('sectionPrompt'));
-      if (!name) return;
-      const trimmed = name.trim();
-      if (!trimmed) return;
-      if (sections.includes(trimmed)) {
-        activeSectionFilter = trimmed;
-        renderSectionFilter();
-        renderCollection(document.getElementById('searchCollection').value);
-        return;
-      }
-      sections.push(trimmed);
-      saveData();
-      populateSectionSelect();
-      activeSectionFilter = trimmed;
-      renderSectionFilter();
-      renderCollection(document.getElementById('searchCollection').value);
-      showToast(t('toastSectionAdded'));
-    }
-
-    function toggleViewMode() {
-      viewMode = viewMode === 'grid' ? 'list' : 'grid';
-      localStorage.setItem(VIEW_KEY, viewMode);
-      updateViewToggleLabel();
-      renderCollection(document.getElementById('searchCollection').value);
-    }
-
-    function updateViewToggleLabel() {
-      const btn = document.getElementById('viewToggleBtn');
-      if (btn) btn.textContent = viewMode === 'grid' ? t('listView') : t('gridView');
-      const addBtn = document.getElementById('addSectionBtn');
-      if (addBtn) addBtn.textContent = t('addSection');
-    }
-
-    function showToast(msg, isError = false) {
-      const el = document.getElementById('toast');
-      if (!el) return;
-      el.textContent = msg;
-      el.className = 'toast' + (isError ? ' error' : '');
-      // Force reflow so the transition plays even if already shown
-      void el.offsetWidth;
-      el.classList.add('show');
-      clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => {
-        el.classList.remove('show');
-      }, 2800);
-    }
-
-    function updateHeaderCount() {
-      const total = collection.reduce((s, c) => s + (c.quantity || 1), 0);
-      document.getElementById('collectionCount').textContent = total;
-    }
-
-    function getLocalized(obj) {
-      if (!obj) return '';
-      if (typeof obj === 'string') return obj;
-      return obj[currentLang] || obj.en || obj.he || '';
-    }
-
-    function getCountryLabel(keyOrObj) {
-      if (!keyOrObj) return '';
-      const key = typeof keyOrObj === 'string' ? keyOrObj : (keyOrObj.en || keyOrObj.he || '');
-      const found = COUNTRIES.find(c => c.en === key || c.he === key);
-      if (found) return currentLang === 'he' ? found.he : found.en;
-      return getLocalized(keyOrObj) || key;
-    }
-
-    function renderCollection(filter = '') {
-      const grid = document.getElementById('collectionGrid');
-      const empty = document.getElementById('collectionEmpty');
-      const q = filter.toLowerCase().trim();
-
-      let items = [...collection];
-
-      if (activeSectionFilter !== 'all') {
-        items = items.filter(c => (c.section || 'General') === activeSectionFilter);
-      }
-
-      if (activeCountryFilter !== 'all') {
-        items = items.filter(c => {
-          const key = (c.country && c.country.en) || (typeof c.country === 'string' ? c.country : '');
-          return key === activeCountryFilter;
-        });
-      }
-
-      if (q) {
-        items = items.filter(c => {
-          const name = getLocalized(c.name).toLowerCase();
-          const country = getCountryLabel(c.country).toLowerCase();
-          const id = (c.cardId || '').toLowerCase();
-          const sec = getSectionLabel(c.section || 'General').toLowerCase();
-          return name.includes(q) || country.includes(q) || id.includes(q) || sec.includes(q);
-        });
-      }
-
-      const totalQty = collection.reduce((s, c) => s + (c.quantity || 1), 0);
-      document.getElementById('statTotal').textContent = totalQty;
-      document.getElementById('statUnique').textContent = collection.length;
-
-      grid.classList.toggle('list-view', viewMode === 'list');
-
-      if (items.length === 0) {
-        grid.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-      }
-      empty.style.display = 'none';
-
-      grid.innerHTML = items.map(c => {
-        const name = getLocalized(c.name) || '—';
-        const country = getCountryLabel(c.country) || '';
-        const sec = getSectionLabel(c.section || 'General');
-        return `
-          <div class="card-item" onclick="openDetail('${c.id}')">
-            <div class="card-thumb">
-              <span class="number">#${c.cardId || '?'}</span>
-              ${c.photo
-                ? `<img src="${c.photo}" alt="${name}" />`
-                : `<div class="player-initial">${name.charAt(0)}</div>`
-              }
-              ${(c.quantity || 1) > 1 ? `<span class="qty-badge">${c.quantity}</span>` : ''}
-            </div>
-            <div class="card-info">
-              <div class="name">${name}</div>
-              <div class="meta">${sec} · ${country} · ${c.total || '—'}</div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function openDetail(id) {
-      const card = collection.find(c => c.id === id);
-      if (!card) return;
-
-      const name = getLocalized(card.name) || '—';
-      const country = getCountryLabel(card.country) || '—';
-      const currentSection = card.section || 'General';
-
-      const sectionOptions = sections.map(s =>
-        `<option value="${s}" ${s === currentSection ? 'selected' : ''}>${getSectionLabel(s)}</option>`
-      ).join('');
-
-      document.getElementById('modalTitle').textContent = name;
-
-      document.getElementById('modalBody').innerHTML = `
-        <div class="detail-hero">
-          <span class="big-number">#${card.cardId || '?'}</span>
-          ${card.photo ? `<img src="${card.photo}" alt="${name}" />` : ''}
-          <div class="big-name">${name}</div>
-          <div class="big-country">${country}</div>
-        </div>
-        <div class="stats-row">
-          <div class="stat-box defence">
-            <div class="label">${t('defence')}</div>
-            <div class="value">${card.defence ?? '—'}</div>
-          </div>
-          <div class="stat-box midfield">
-            <div class="label">${t('midfield')}</div>
-            <div class="value">${card.midfield ?? '—'}</div>
-          </div>
-          <div class="stat-box attack">
-            <div class="label">${t('attack')}</div>
-            <div class="value">${card.attack ?? '—'}</div>
-          </div>
-          <div class="stat-box total">
-            <div class="label">${t('total')}</div>
-            <div class="value">${card.total ?? '—'}</div>
-          </div>
-        </div>
-        <div class="info-list">
-          <div class="info-row"><span>${t('cardId')}</span><span>${card.cardId || '—'}</span></div>
-          <div class="info-row"><span>${t('country')}</span><span>${country}</span></div>
-          <div class="info-row"><span>${t('owned')}</span><span>${card.quantity || 1}×</span></div>
-        </div>
-        <div class="form-group" style="margin-bottom:16px;">
-          <label>${t('section')}</label>
-          <select id="detailSectionSelect" class="filter-select" style="width:100%;">
-            ${sectionOptions}
-          </select>
-        </div>
-        <div class="btn-row" style="margin-bottom:12px;">
-          <button class="btn btn-primary" onclick="changeCardSection('${id}')">${t('moveSection')}</button>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-danger" onclick="removeOne('${id}')">${t('removeOne')}</button>
-          <button class="btn btn-secondary" onclick="addDuplicate('${id}')">${t('addDuplicate')}</button>
-        </div>
-      `;
-
-      document.getElementById('detailModal').classList.add('open');
-    }
-
-    function changeCardSection(id) {
-      const card = collection.find(c => c.id === id);
-      if (!card) return;
-      const select = document.getElementById('detailSectionSelect');
-      if (!select) return;
-      const newSection = select.value || 'General';
-      card.section = newSection;
-      saveData();
-      renderSectionFilter();
-      populateCountryFilter();
-      renderCollection(document.getElementById('searchCollection').value);
-      closeModal();
-      showToast(t('toastSectionMoved'));
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.remove('open');
-    }
-
-    function addDuplicate(id) {
-      const card = collection.find(c => c.id === id);
-      if (!card) return;
-      card.quantity = (card.quantity || 1) + 1;
-      saveData();
-      renderCollection(document.getElementById('searchCollection').value);
-      closeModal();
-      showToast(t('toastAdded'));
-    }
-
-    function removeOne(id) {
-      const idx = collection.findIndex(c => c.id === id);
-      if (idx === -1) return;
-      if ((collection[idx].quantity || 1) > 1) {
-        collection[idx].quantity -= 1;
-      } else {
-        collection.splice(idx, 1);
-      }
-      saveData();
-      renderCollection(document.getElementById('searchCollection').value);
-      closeModal();
-      showToast(t('toastRemoved'));
-    }
-
-    document.getElementById('cameraInput').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        currentPhoto = ev.target.result;
-        const img = document.getElementById('cameraPreview');
-        img.src = currentPhoto;
-        img.classList.add('visible');
-      };
-      reader.readAsDataURL(file);
-    });
-
-    document.getElementById('addForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const nameVal = document.getElementById('name').value.trim();
-      const cardIdVal = document.getElementById('cardId').value.trim();
-
-      if (!nameVal || !cardIdVal) {
-        showToast(t('toastRequired'), true);
-        return;
-      }
-
-      const defence = parseInt(document.getElementById('defence').value) || null;
-      const midfield = parseInt(document.getElementById('midfield').value) || null;
-      const attack = parseInt(document.getElementById('attack').value) || null;
-      let total = parseInt(document.getElementById('total').value) || null;
-
-      if (!total && defence != null && midfield != null && attack != null) {
-        total = defence + midfield + attack;
-      }
-
-      const countryVal = document.getElementById('country').value.trim(); // English key
-      const sectionVal = (document.getElementById('section') && document.getElementById('section').value) || 'General';
-
-      const nameObj = { en: '', he: '' };
-      nameObj[currentLang] = nameVal;
-
-      // Always store English country key for consistent lookup
-      const countryObj = { en: countryVal || '', he: '' };
-
-      const existing = collection.find(c => c.cardId === cardIdVal);
-      if (existing) {
-        existing.quantity = (existing.quantity || 1) + 1;
-        if (!existing.name[currentLang]) existing.name[currentLang] = nameVal;
-        if (countryVal && !existing.country.en) existing.country.en = countryVal;
-        if (!existing.section) existing.section = sectionVal;
-        if (currentPhoto && !existing.photo) existing.photo = currentPhoto;
-      } else {
-        collection.push({
-          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
-          cardId: cardIdVal,
-          name: nameObj,
-          country: countryObj,
-          section: sectionVal,
-          defence,
-          midfield,
-          attack,
-          total,
-          photo: currentPhoto,
-          quantity: 1,
-          addedAt: new Date().toISOString()
-        });
-      }
-
-      saveData();
-      populateCountryFilter();
-      renderSectionFilter();
-      renderCollection();
-
-      this.reset();
-      currentPhoto = null;
-      document.getElementById('cameraPreview').classList.remove('visible');
-      document.getElementById('cameraPreview').src = '';
-      populateSectionSelect();
-      populateCountrySelect();
-
-      switchView('collection');
-      showToast(t('toastAdded'));
-    });
-
-    function switchView(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(viewId).classList.add('active');
-      document.querySelector(`.tab[data-view="${viewId}"]`).classList.add('active');
-      if (viewId === 'collection') renderCollection(document.getElementById('searchCollection').value);
-    }
-
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => switchView(tab.dataset.view));
-    });
-
-    document.getElementById('searchCollection').addEventListener('input', e => {
-      renderCollection(e.target.value);
-    });
-
-    document.getElementById('detailModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    // --- PWA install prompt ---
-    let deferredInstallPrompt = null;
-    const INSTALL_DISMISS_KEY = 'fifa365_install_dismissed';
-
-    function isStandalone() {
-      return window.matchMedia('(display-mode: standalone)').matches
-        || window.navigator.standalone === true;
-    }
-
-    function isIos() {
-      return /iphone|ipad|ipod/i.test(navigator.userAgent);
-    }
-
-    function updateInstallBannerText() {
-      const title = t('installTitle');
-      const body = t('installBody');
-      document.getElementById('installBannerText').innerHTML =
-        `<strong>${title}</strong><br>${body}`;
-      document.getElementById('installDismissBtn').textContent = t('installDismiss');
-      document.getElementById('installAcceptBtn').textContent = t('installAccept');
-      const iosEl = document.getElementById('installIosSteps');
-      if (isIos()) {
-        iosEl.style.display = 'block';
-        iosEl.textContent = t('installIosSteps');
-        document.getElementById('installAcceptBtn').style.display = 'none';
-      } else {
-        iosEl.style.display = 'none';
-        document.getElementById('installAcceptBtn').style.display = '';
-      }
-    }
-
-    function showInstallBanner() {
-      if (isStandalone()) return;
-      if (localStorage.getItem(INSTALL_DISMISS_KEY) === '1') return;
-      updateInstallBannerText();
-      document.getElementById('installBanner').classList.add('show');
-    }
-
-    function dismissInstallBanner() {
-      document.getElementById('installBanner').classList.remove('show');
-      localStorage.setItem(INSTALL_DISMISS_KEY, '1');
-    }
-
-    async function acceptInstall() {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        const choice = await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        dismissInstallBanner();
-        if (choice && choice.outcome === 'accepted') {
-          showToast(t('installTitle'));
-        }
-      } else if (isIos()) {
-        updateInstallBannerText();
-        document.getElementById('installBanner').classList.add('show');
-      }
-    }
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-      setTimeout(showInstallBanner, 1500);
-    });
-
-    window.addEventListener('appinstalled', () => {
-      document.getElementById('installBanner').classList.remove('show');
-      localStorage.setItem(INSTALL_DISMISS_KEY, '1');
-    });
-
-    // iOS: show custom instructions after a short delay
-    if (isIos() && !isStandalone()) {
-      setTimeout(showInstallBanner, 2000);
-    }
-
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    }
-
-    // Re-apply install banner text on language change
-    const _origApplyLanguage = applyLanguage;
-    applyLanguage = function() {
-      _origApplyLanguage();
-      if (document.getElementById('installBanner').classList.contains('show')) {
-        updateInstallBannerText();
-      }
-    };
-
-    loadData();
-    updateHeaderCount();
-    applyLanguage();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
