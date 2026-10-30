@@ -507,7 +507,8 @@
     </div>
   </div>
 
-  <div id="add" class="view">n    <div class="camera-section">
+  <div id="add" class="view">
+    <div class="camera-section">
       <p id="cameraHint">📷 Optional: take a photo of the card (for your reference)</p>
       <input type="file" id="cameraInput" accept="image/*" style="display:none;" />
       <button class="btn btn-secondary" style="width:auto;padding:12px 24px;" id="cameraBtn" onclick="document.getElementById('cameraInput').click()">
@@ -529,22 +530,7 @@
         </div>
         <div class="form-group">
           <label id="labelCountry">Country</label>
-          <select id="country">
-            <option value="">—</option>
-            <option value="Argentina">Argentina</option>
-            <option value="Belgium">Belgium</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Croatia">Croatia</option>
-            <option value="England">England</option>
-            <option value="France">France</option>
-            <option value="Germany">Germany</option>
-            <option value="Italy">Italy</option>
-            <option value="Netherlands">Netherlands</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Spain">Spain</option>
-            <option value="Uruguay">Uruguay</option>
-            <option value="Other">Other</option>
-          </select>
+          <select id="country"></select>
         </div>
       </div>
 
@@ -662,8 +648,82 @@
 
     let currentLang = localStorage.getItem('fifa365_lang') || 'en';
 
+    const COUNTRIES = [
+      { en: "Algeria", he: "אלג'יריה" },
+      { en: "Argentina", he: "ארגנטינה" },
+      { en: "Australia", he: "אוסטרליה" },
+      { en: "Austria", he: "אוסטריה" },
+      { en: "Belgium", he: "בלגיה" },
+      { en: "Bosnia and Herzegovina", he: "בוסניה והרצגובינה" },
+      { en: "Brazil", he: "ברזיל" },
+      { en: "Canada", he: "קנדה" },
+      { en: "Cape Verde", he: "כף ורדה" },
+      { en: "Colombia", he: "קולומביה" },
+      { en: "Croatia", he: "קרואטיה" },
+      { en: "Curaçao", he: "קוראסאו" },
+      { en: "Czech Republic", he: "צ'כיה" },
+      { en: "DR Congo", he: "הרפובליקה הדמוקרטית של קונגו" },
+      { en: "Ecuador", he: "אקוודור" },
+      { en: "Egypt", he: "מצרים" },
+      { en: "England", he: "אנגליה" },
+      { en: "France", he: "צרפת" },
+      { en: "Germany", he: "גרמניה" },
+      { en: "Ghana", he: "גאנה" },
+      { en: "Haiti", he: "האיטי" },
+      { en: "Iran", he: "איראן" },
+      { en: "Iraq", he: "עיראק" },
+      { en: "Italy", he: "איטליה" },
+      { en: "Ivory Coast", he: "חוף השנהב" },
+      { en: "Japan", he: "יפן" },
+      { en: "Jordan", he: "ירדן" },
+      { en: "Mexico", he: "מקסיקו" },
+      { en: "Morocco", he: "מרוקו" },
+      { en: "Netherlands", he: "הולנד" },
+      { en: "New Zealand", he: "ניו זילנד" },
+      { en: "Norway", he: "נורווגיה" },
+      { en: "Panama", he: "פנמה" },
+      { en: "Paraguay", he: "פרגוואי" },
+      { en: "Portugal", he: "פורטוגל" },
+      { en: "Qatar", he: "קטאר" },
+      { en: "Saudi Arabia", he: "ערב הסעודית" },
+      { en: "Scotland", he: "סקוטלנד" },
+      { en: "Senegal", he: "סנגל" },
+      { en: "South Africa", he: "דרום אפריקה" },
+      { en: "South Korea", he: "דרום קוריאה" },
+      { en: "Spain", he: "ספרד" },
+      { en: "Sweden", he: "שוודיה" },
+      { en: "Switzerland", he: "שווייץ" },
+      { en: "Tunisia", he: "תוניסיה" },
+      { en: "Turkey", he: "טורקיה" },
+      { en: "United States", he: "ארצות הברית" },
+      { en: "Uruguay", he: "אורוגוואי" },
+      { en: "Uzbekistan", he: "אוזבקיסטן" },
+      { en: "Other", he: "אחר" }
+    ];
+
     function t(key) {
       return translations[currentLang][key] || translations.en[key] || key;
+    }
+
+    function populateCountrySelect() {
+      const select = document.getElementById('country');
+      if (!select) return;
+      const currentValue = select.value;
+      select.innerHTML = '';
+
+      const empty = document.createElement('option');
+      empty.value = '';
+      empty.textContent = '—';
+      select.appendChild(empty);
+
+      COUNTRIES.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.en;
+        opt.textContent = currentLang === 'he' ? c.he : c.en;
+        select.appendChild(opt);
+      });
+
+      if (currentValue) select.value = currentValue;
     }
 
     function applyLanguage() {
@@ -689,6 +749,7 @@
       document.getElementById('labelTotal').textContent = t('labelTotal');
       document.getElementById('submitBtn').textContent = t('submitBtn');
 
+      populateCountrySelect();
       renderCollection(document.getElementById('searchCollection').value);
     }
 
@@ -740,6 +801,14 @@
       return obj[currentLang] || obj.en || obj.he || '';
     }
 
+    function getCountryLabel(keyOrObj) {
+      if (!keyOrObj) return '';
+      const key = typeof keyOrObj === 'string' ? keyOrObj : (keyOrObj.en || keyOrObj.he || '');
+      const found = COUNTRIES.find(c => c.en === key || c.he === key);
+      if (found) return currentLang === 'he' ? found.he : found.en;
+      return getLocalized(keyOrObj) || key;
+    }
+
     function renderCollection(filter = '') {
       const grid = document.getElementById('collectionGrid');
       const empty = document.getElementById('collectionEmpty');
@@ -750,7 +819,7 @@
       if (q) {
         items = items.filter(c => {
           const name = getLocalized(c.name).toLowerCase();
-          const country = getLocalized(c.country).toLowerCase();
+          const country = getCountryLabel(c.country).toLowerCase();
           const id = (c.cardId || '').toLowerCase();
           return name.includes(q) || country.includes(q) || id.includes(q);
         });
@@ -769,7 +838,7 @@
 
       grid.innerHTML = items.map(c => {
         const name = getLocalized(c.name) || '—';
-        const country = getLocalized(c.country) || '';
+        const country = getCountryLabel(c.country) || '';
         return `
           <div class="card-item" onclick="openDetail('${c.id}')">
             <div class="card-thumb">
@@ -794,7 +863,7 @@
       if (!card) return;
 
       const name = getLocalized(card.name) || '—';
-      const country = getLocalized(card.country) || '—';
+      const country = getCountryLabel(card.country) || '—';
 
       document.getElementById('modalTitle').textContent = name;
 
@@ -903,14 +972,13 @@
       const nameObj = { en: '', he: '' };
       nameObj[currentLang] = nameVal;
 
-      const countryObj = { en: '', he: '' };
-      if (countryVal) countryObj[currentLang] = countryVal;
+      const countryObj = { en: countryVal || '', he: '' };
 
       const existing = collection.find(c => c.cardId === cardIdVal);
       if (existing) {
         existing.quantity = (existing.quantity || 1) + 1;
         if (!existing.name[currentLang]) existing.name[currentLang] = nameVal;
-        if (countryVal && !existing.country[currentLang]) existing.country[currentLang] = countryVal;
+        if (countryVal && !existing.country.en) existing.country.en = countryVal;
         if (currentPhoto && !existing.photo) existing.photo = currentPhoto;
       } else {
         collection.push({
