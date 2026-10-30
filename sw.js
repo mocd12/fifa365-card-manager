@@ -1,11 +1,11 @@
-const CACHE = 'fifa365-v1';
+const CACHE = 'fifa365-v2';
 const ASSETS = [
   './',
   './index.html',
   './app.js',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
+  './icon.svg',
+  './sw.js'
 ];
 
 self.addEventListener('install', (event) => {
