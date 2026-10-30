@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FIFA 365 Cards" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
   <title>FIFA 365 Card Manager</title>
   <style>
     :root {
@@ -81,10 +88,7 @@
       cursor: pointer;
       border-bottom: 3px solid transparent;
     }
-    .tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
     .view { display: none; padding: 16px; animation: fadeIn 0.25s ease; }
     .view.active { display: block; }
     @keyframes fadeIn {
@@ -128,42 +132,14 @@
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 14px;
     }
-    .card-grid.list-view {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .card-grid.list-view .card-item {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    .card-grid.list-view .card-thumb {
-      width: 72px;
-      min-width: 72px;
-      aspect-ratio: 2.5 / 3.5;
-      border-radius: 0;
-    }
-    .card-grid.list-view .card-info {
-      flex: 1;
-      padding: 10px 14px;
-    }
-    .card-grid.list-view .player-initial {
-      font-size: 1.6rem;
-    }
+    .card-grid.list-view { grid-template-columns: 1fr; gap: 8px; }
+    .card-grid.list-view .card-item { display: flex; flex-direction: row; align-items: center; }
+    .card-grid.list-view .card-thumb { width: 72px; min-width: 72px; aspect-ratio: 2.5 / 3.5; border-radius: 0; }
+    .card-grid.list-view .card-info { flex: 1; padding: 10px 14px; }
+    .card-grid.list-view .player-initial { font-size: 1.6rem; }
     .filters-panel { margin-bottom: 14px; }
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 8px;
-      align-items: center;
-    }
-    .filter-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-weight: 600;
-      min-width: 56px;
-    }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; align-items: center; }
+    .filter-label { font-size: 0.75rem; color: var(--muted); font-weight: 600; min-width: 56px; }
     .section-chip, .filter-chip {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -190,7 +166,7 @@
     }
     .filter-select:focus { border-color: var(--accent); }
     .view-toggle { cursor: pointer; border: none; color: var(--text); }
-    .stat-pill button, button.stat-pill {
+    button.stat-pill {
       cursor: pointer;
       border: 1px solid var(--border);
       background: var(--card-bg);
@@ -244,11 +220,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .card-info .meta {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
+    .card-info .meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
     .qty-badge {
       position: absolute;
       bottom: 8px;
@@ -422,11 +394,7 @@
     }
     .form-group input:focus,
     .form-group select:focus { border-color: var(--accent); }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .camera-section {
       background: var(--card-bg);
       border: 1px dashed var(--border);
@@ -435,11 +403,7 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    .camera-section p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
+    .camera-section p { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
     .camera-preview {
       max-width: 100%;
       max-height: 220px;
@@ -467,11 +431,34 @@
       text-align: center;
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast.error { background: var(--red); color: white; }
+    .install-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 16px 18px calc(16px + env(safe-area-inset-bottom));
+      z-index: 10000;
+      display: none;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+      animation: slideUp 0.3s ease;
+    }
+    .install-banner.show { display: block; }
+    .install-banner-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .install-banner-text { font-size: 0.95rem; line-height: 1.4; color: var(--text); }
+    .install-banner-text strong { color: var(--accent); }
+    .install-banner-actions { display: flex; gap: 10px; }
+    .install-banner-actions .btn { flex: 1; padding: 12px; font-size: 0.95rem; }
+    .install-ios-steps { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: 4px; white-space: pre-line; }
   </style>
 </head>
 <body>
@@ -518,9 +505,7 @@
     <div class="camera-section">
       <p id="cameraHint">📷 Optional: take a photo of the card (for your reference)</p>
       <input type="file" id="cameraInput" accept="image/*" style="display:none;" />
-      <button class="btn btn-secondary" style="width:auto;padding:12px 24px;" id="cameraBtn" onclick="document.getElementById('cameraInput').click()">
-        Camera / Photo Library
-      </button>
+      <button class="btn btn-secondary" style="width:auto;padding:12px 24px;" id="cameraBtn" onclick="document.getElementById('cameraInput').click()">Camera / Photo Library</button>
       <img id="cameraPreview" class="camera-preview" alt="Preview" />
     </div>
     <form id="addForm">
@@ -562,9 +547,7 @@
           <input type="number" id="total" min="0" max="600" />
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;" id="submitBtn">
-        ➕ Add to Collection
-      </button>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;" id="submitBtn">➕ Add to Collection</button>
     </form>
   </div>
   <div class="modal-overlay" id="detailModal">
@@ -577,6 +560,19 @@
     </div>
   </div>
   <div class="toast" id="toast"></div>
+  <div class="install-banner" id="installBanner">
+    <div class="install-banner-inner">
+      <div class="install-banner-text" id="installBannerText">
+        <strong>Install FIFA 365 Cards</strong><br>
+        Add this app to your home screen for quick access.
+      </div>
+      <div class="install-ios-steps" id="installIosSteps" style="display:none;"></div>
+      <div class="install-banner-actions">
+        <button type="button" class="btn btn-secondary" id="installDismissBtn" onclick="dismissInstallBanner()">Not now</button>
+        <button type="button" class="btn btn-primary" id="installAcceptBtn" onclick="acceptInstall()">Install</button>
+      </div>
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
