@@ -1,11 +1,9 @@
-const CACHE = 'fifa365-v2';
+const CACHE = 'fifa365-v3';
 const ASSETS = [
   './',
   './index.html',
-  './app.js',
   './manifest.json',
-  './icon.svg',
-  './sw.js'
+  './icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -23,13 +21,24 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
+    event.respondWith(
+      fetch(req).then((res) => {
+        const copy = res.clone();
+        caches.open(CACHE).then((c) => c.put(req, copy));
+        return res;
+      }).catch(() => caches.match(req))
+    );
+    return;
+  }
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    caches.match(req).then((cached) => {
       if (cached) return cached;
-      return fetch(event.request).then((response) => {
+      return fetch(req).then((response) => {
         const copy = response.clone();
-        if (event.request.method === 'GET' && response.status === 200) {
-          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+        if (req.method === 'GET' && response.status === 200) {
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
         }
         return response;
       }).catch(() => cached);
