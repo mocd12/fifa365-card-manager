@@ -1,41 +1,108 @@
-/* full app - loaded from local extract with PWA install prompt */
 const translations = {
   en: {
-    appTitle: "⚽ FIFA 365 Cards", langBtn: "עב", tabCollection: "My Collection", tabAdd: "Add Card",
-    searchCollection: "Search name, country, ID...", labelCards: "Cards", labelUnique: "Unique",
+    appTitle: "⚽ FIFA 365 Cards",
+    langBtn: "עב",
+    tabCollection: "My Collection",
+    tabAdd: "Add Card",
+    searchCollection: "Search name, country, ID...",
+    labelCards: "Cards",
+    labelUnique: "Unique",
     emptyText: "Your collection is empty.<br>Add your first card!",
-    cameraHint: "📷 Optional: take a photo of the card (for your reference)", cameraBtn: "Camera / Photo Library",
-    labelName: "Name *", labelCardId: "Card ID *", labelCountry: "Country", labelSection: "Section",
-    labelDefence: "Defence", labelMidfield: "Midfield", labelAttack: "Attack", labelTotal: "Total",
-    submitBtn: "➕ Add to Collection", modalTitle: "Card Details",
-    toastAdded: "Card added!", toastRemoved: "Card removed", toastRequired: "Name and Card ID are required",
-    toastSectionAdded: "Section added", owned: "Owned", removeOne: "Remove 1", addDuplicate: "+1 Duplicate",
-    defence: "Defence", midfield: "Midfield", attack: "Attack", total: "Total", country: "Country",
-    section: "Section", cardId: "Card ID", no: "No", allSections: "All", generalSection: "General",
-    listView: "☰ List", gridView: "▦ Grid", addSection: "+ Section", sectionPrompt: "New section name:",
-    filterSection: "Section", filterCountry: "Country", filterAll: "All",
-    moveSection: "Move to section", toastSectionMoved: "Section updated",
-    installTitle: "Install FIFA 365 Cards", installBody: "Add this app to your home screen for quick access.",
-    installDismiss: "Not now", installAccept: "Install",
+    cameraHint: "📷 Optional: take a photo of the card (for your reference)",
+    cameraBtn: "Camera / Photo Library",
+    labelName: "Name *",
+    labelCardId: "Card ID *",
+    labelCountry: "Country",
+    labelSection: "Section",
+    labelDefence: "Defence",
+    labelMidfield: "Midfield",
+    labelAttack: "Attack",
+    labelTotal: "Total",
+    submitBtn: "➕ Add to Collection",
+    modalTitle: "Card Details",
+    toastAdded: "Card added!",
+    toastRemoved: "Card removed",
+    toastRequired: "Name and Card ID are required",
+    toastSectionAdded: "Section added",
+    owned: "Owned",
+    removeOne: "Remove 1",
+    addDuplicate: "+1 Duplicate",
+    defence: "Defence",
+    midfield: "Midfield",
+    attack: "Attack",
+    total: "Total",
+    country: "Country",
+    section: "section": "Section",
+    cardId: "Card ID",
+    no: "No",
+    allSections: "All",
+    generalSection: "General",
+    listView: "☰ List",
+    gridView: "▦ Grid",
+    addSection: "+ Section",
+    sectionPrompt: "New section name:",
+    filterSection: "Section",
+    filterCountry: "Country",
+    filterAll: "All",
+    moveSection: "Move to section",
+    toastSectionMoved: "Section updated",
+    installTitle: "Install FIFA 365 Cards",
+    installBody: "Add this app to your home screen for quick access.",
+    installDismiss: "Not now",
+    installAccept: "Install",
     installIosSteps: "1. Tap the Share button ↓\n2. Choose “Add to Home Screen”\n3. Tap Add"
   },
   he: {
-    appTitle: "⚽ כרטיסי FIFA 365", langBtn: "EN", tabCollection: "האוסף שלי", tabAdd: "הוסף כרטיס",
-    searchCollection: "חיפוש לפי שם, מדינה, מזהה...", labelCards: "כרטיסים", labelUnique: "ייחודיים",
+    appTitle: "⚽ כרטיסי FIFA 365",
+    langBtn: "EN",
+    tabCollection: "האוסף שלי",
+    tabAdd: "הוסף כרטיס",
+    searchCollection: "חיפוש לפי שם, מדינה, מזהה...",
+    labelCards: "כרטיסים",
+    labelUnique: "ייחודיים",
     emptyText: "האוסף שלך ריק.<br>הוסף את הכרטיס הראשון!",
-    cameraHint: "📷 אופציונלי: צלם את הכרטיס (לשמירה)", cameraBtn: "מצלמה / ספריית תמונות",
-    labelName: "שם *", labelCardId: "מזהה כרטיס *", labelCountry: "מדינה", labelSection: "מדור",
-    labelDefence: "הגנה", labelMidfield: "קישור", labelAttack: "התקפה", labelTotal: "סה״כ",
-    submitBtn: "➕ הוסף לאוסף", modalTitle: "פרטי כרטיס",
-    toastAdded: "הכרטיס נוסף!", toastRemoved: "הכרטיס הוסר", toastRequired: "שם ומזהה כרטיס הם שדות חובה",
-    toastSectionAdded: "המדור נוסף", owned: "בבעלות", removeOne: "הסר 1", addDuplicate: "+1 כפול",
-    defence: "הגנה", midfield: "קישור", attack: "התקפה", total: "סה״כ", country: "מדינה",
-    section: "מדור", cardId: "מזהה כרטיס", no: "לא", allSections: "הכל", generalSection: "כללי",
-    listView: "☰ רשימה", gridView: "▦ רשת", addSection: "+ מדור", sectionPrompt: "שם המדור החדש:",
-    filterSection: "מדור", filterCountry: "מדינה", filterAll: "הכל",
-    moveSection: "העבר למדור", toastSectionMoved: "המדור עודכן",
-    installTitle: "התקן את כרטיסי FIFA 365", installBody: "הוסף את האפליקציה למסך הבית לגישה מהירה.",
-    installDismiss: "לא עכשיו", installAccept: "התקן",
+    cameraHint: "📷 אופציונלי: צלם את הכרטיס (לשמירה)",
+    cameraBtn: "מצלמה / ספריית תמונות",
+    labelName: "שם *",
+    labelCardId: "מזהה כרטיס *",
+    labelCountry: "מדינה",
+    labelSection: "מדור",
+    labelDefence: "הגנה",
+    labelMidfield: "קישור",
+    labelAttack: "התקפה",
+    labelTotal: "סה״כ",
+    submitBtn: "➕ הוסף לאוסף",
+    modalTitle: "פרטי כרטיס",
+    toastAdded: "הכרטיס נוסף!",
+    toastRemoved: "הכרטיס הוסר",
+    toastRequired: "שם ומזהה כרטיס הם שדות חובה",
+    toastSectionAdded: "המדור נוסף",
+    owned: "בבעלות",
+    removeOne: "הסר 1",
+    addDuplicate: "+1 כפול",
+    defence: "הגנה",
+    midfield: "קישור",
+    attack: "התקפה",
+    total: "סה״כ",
+    country: "מדינה",
+    section: "מדור",
+    cardId: "מזהה כרטיס",
+    no: "לא",
+    allSections: "הכל",
+    generalSection: "כללי",
+    listView: "☰ רשימה",
+    gridView: "▦ רשת",
+    addSection: "+ מדור",
+    sectionPrompt: "שם המדור החדש:",
+    filterSection: "מדור",
+    filterCountry: "מדינה",
+    filterAll: "הכל",
+    moveSection: "העבר למדור",
+    toastSectionMoved: "המדור עודכן",
+    installTitle: "התקן את כרטיסי FIFA 365",
+    installBody: "הוסף את האפליקציה למסך הבית לגישה מהירה.",
+    installDismiss: "לא עכשיו",
+    installAccept: "התקן",
     installIosSteps: "1. לחץ על כפתור השיתוף ↓\n2. בחר \"הוסף למסך הבית\"\n3. לחץ הוסף"
   }
 };
@@ -43,26 +110,61 @@ const translations = {
 let currentLang = localStorage.getItem('fifa365_lang') || 'en';
 
 const COUNTRIES = [
-  { en: "Algeria", he: "אלג'יריה" }, { en: "Argentina", he: "ארגנטינה" }, { en: "Australia", he: "אוסטרליה" },
-  { en: "Austria", he: "אוסטריה" }, { en: "Belgium", he: "בלגיה" }, { en: "Bosnia and Herzegovina", he: "בוסניה והרצגובינה" },
-  { en: "Brazil", he: "ברזיל" }, { en: "Canada", he: "קנדה" }, { en: "Cape Verde", he: "כף ורדה" },
-  { en: "Colombia", he: "קולומביה" }, { en: "Croatia", he: "קרואטיה" }, { en: "Curaçao", he: "קוראסאו" },
-  { en: "Czech Republic", he: "צ'כיה" }, { en: "DR Congo", he: "הרפובליקה הדמוקרטית של קונגו" },
-  { en: "Ecuador", he: "אקוודור" }, { en: "Egypt", he: "מצרים" }, { en: "England", he: "אנגליה" },
-  { en: "France", he: "צרפת" }, { en: "Germany", he: "גרמניה" }, { en: "Ghana", he: "גאנה" },
-  { en: "Haiti", he: "האיטי" }, { en: "Iran", he: "איראן" }, { en: "Iraq", he: "עיראק" },
-  { en: "Italy", he: "איטליה" }, { en: "Ivory Coast", he: "חוף השנהב" }, { en: "Japan", he: "יפן" },
-  { en: "Jordan", he: "ירדן" }, { en: "Mexico", he: "מקסיקו" }, { en: "Morocco", he: "מרוקו" },
-  { en: "Netherlands", he: "הולנד" }, { en: "New Zealand", he: "ניו זילנד" }, { en: "Norway", he: "נורווגיה" },
-  { en: "Panama", he: "פנמה" }, { en: "Paraguay", he: "פרגוואי" }, { en: "Portugal", he: "פורטוגל" },
-  { en: "Qatar", he: "קטאר" }, { en: "Saudi Arabia", he: "ערב הסעודית" }, { en: "Scotland", he: "סקוטלנד" },
-  { en: "Senegal", he: "סנגל" }, { en: "South Africa", he: "דרום אפריקה" }, { en: "South Korea", he: "דרום קוריאה" },
-  { en: "Spain", he: "ספרד" }, { en: "Sweden", he: "שוודיה" }, { en: "Switzerland", he: "שווייץ" },
-  { en: "Tunisia", he: "תוניסיה" }, { en: "Turkey", he: "טורקיה" }, { en: "United States", he: "ארצות הברית" },
-  { en: "Uruguay", he: "אורוגוואי" }, { en: "Uzbekistan", he: "אוזבקיסטן" }, { en: "Other", he: "אחר" }
+  { en: "Algeria", he: "אלג'יריה" },
+  { en: "Argentina", he: "ארגנטינה" },
+  { en: "Australia", he: "אוסטרליה" },
+  { en: "Austria", he: "אוסטריה" },
+  { en: "Belgium", he: "בלגיה" },
+  { en: "Bosnia and Herzegovina", he: "בוסניה והרצגובינה" },
+  { en: "Brazil", he: "ברזיל" },
+  { en: "Canada", he: "קנדה" },
+  { en: "Cape Verde", he: "כף ורדה" },
+  { en: "Colombia", he: "קולומביה" },
+  { en: "Croatia", he: "קרואטיה" },
+  { en: "Curaçao", he: "קוראסאו" },
+  { en: "Czech Republic", he: "צ'כיה" },
+  { en: "DR Congo", he: "הרפובליקה הדמוקרטית של קונגו" },
+  { en: "Ecuador", he: "אקוודור" },
+  { en: "Egypt", he: "מצרים" },
+  { en: "England", he: "אנגליה" },
+  { en: "France", he: "צרפת" },
+  { en: "Germany", he: "גרמניה" },
+  { en: "Ghana", he: "גאנה" },
+  { en: "Haiti", he: "האיטי" },
+  { en: "Iran", he: "איראן" },
+  { en: "Iraq", he: "עיראק" },
+  { en: "Italy", he: "איטליה" },
+  { en: "Ivory Coast", he: "חוף השנהב" },
+  { en: "Japan", he: "יפן" },
+  { en: "Jordan", he: "ירדן" },
+  { en: "Mexico", he: "מקסיקו" },
+  { en: "Morocco", he: "מרוקו" },
+  { en: "Netherlands", he: "הולנד" },
+  { en: "New Zealand", he: "ניו זילנד" },
+  { en: "Norway", he: "נורווגיה" },
+  { en: "Panama", he: "פנמה" },
+  { en: "Paraguay", he: "פרגוואי" },
+  { en: "Portugal", he: "פורטוגל" },
+  { en: "Qatar", he: "קטאר" },
+  { en: "Saudi Arabia", he: "ערב הסעודית" },
+  { en: "Scotland", he: "סקוטלנד" },
+  { en: "Senegal", he: "סנגל" },
+  { en: "South Africa", he: "דרום אפריקה" },
+  { en: "South Korea", he: "דרום קוריאה" },
+  { en: "Spain", he: "ספרד" },
+  { en: "Sweden", he: "שוודיה" },
+  { en: "Switzerland", he: "שווייץ" },
+  { en: "Tunisia", he: "תוניסיה" },
+  { en: "Turkey", he: "טורקיה" },
+  { en: "United States", he: "ארצות הברית" },
+  { en: "Uruguay", he: "אורוגוואי" },
+  { en: "Uzbekistan", he: "אוזבקיסטן" },
+  { en: "Other", he: "אחר" }
 ];
 
-function t(key return translations[currentLang][key] || translations.en[key] || key; }
+function t(key) {
+  return translations[currentLang][key] || translations.en[key] || key;
+}
 
 function populateCountrySelect() {
   const select = document.getElementById('country');
@@ -70,13 +172,14 @@ function populateCountrySelect() {
   const currentValue = select.value;
   select.innerHTML = '';
   const empty = document.createElement('option');
-  empty.value = ''; empty.textContent = '—';
+  empty.value = '';
+  empty.textContent = '—';
   select.appendChild(empty);
   COUNTRIES.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.en;
     opt.textContent = currentLang === 'he' ? c.he : c.en;
-.appendChild(opt);
+    select.appendChild(opt);
   });
   if (currentValue) select.value = currentValue;
 }
@@ -149,7 +252,8 @@ function populateSectionSelect() {
   select.innerHTML = '';
   sections.forEach(s => {
     const opt = document.createElement('option');
-    opt.value = s; opt.textContent = getSectionLabel(s);
+    opt.value = s;
+    opt.textContent = getSectionLabel(s);
     select.appendChild(opt);
   });
   select.value = current && sections.includes(current) ? current : 'General';
@@ -178,7 +282,8 @@ function populateCountryFilter() {
   select.innerHTML = `<option value="all">${t('filterAll')}</option>`;
   Array.from(used).sort().forEach(key => {
     const opt = document.createElement('option');
-    opt.value = key; opt.textContent = getCountryLabel(key);
+    opt.value = key;
+    opt.textContent = getCountryLabel(key);
     select.appendChild(opt);
   });
   select.value = prev && (prev === 'all' || used.has(prev)) ? prev : 'all';
@@ -273,17 +378,13 @@ function renderCollection(filter = '') {
   document.getElementById('statTotal').textContent = collection.reduce((s, c) => s + (c.quantity || 1), 0);
   document.getElementById('statUnique').textContent = collection.length;
   grid.classList.toggle('list-view', viewMode === 'list');
-  if (items.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  if (items.length === 0 trans { grid.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
   grid.innerHTML = items.map(c => {
     const name = getLocalized(c.name) || '—';
     const country = getCountryLabel(c.country) || '';
     const sec = getSectionLabel(c.section || 'General');
-    return `<div class="card-item" onclick="openDetail('${c.id}')">
-      <div class="card-thumb"><span class="number">#${c.cardId || '?'}</span>
-      ${c.photo ? `<img src="${c.photo}" alt="${name}" />` : `<div class="player-initial">${name.charAt(0)}</div>`}
-      ${(c.quantity || 1) > 1 ? `<span class="qty-badge">${c.quantity}</span>` : ''}</div>
-      <div class="card-info"><div class="name">${name}</div><div class="meta">${sec} · ${country} · ${c.total || '—'}</div></div></div>`;
+    return `<div class="card-item" onclick="openDetail('${c.id}')"><div class="card-thumb"><span class="number">#${c.cardId || '?'}</span>${c.photo ? `<img src="${c.photo}" alt="${name}" />` : `<div class="player-initial">${name.charAt(0)}</div>`}${(c.quantity || 1) > 1 ? `<span class="qty-badge">${c.quantity}</span>` : ''}</div><div class="card-info"><div class="name">${name}</div><div class="meta">${sec} · ${country} · ${c.total || '—'}</div></div></div>`;
   }).join('');
 }
 function openDetail(id) {
@@ -292,38 +393,9 @@ function openDetail(id) {
   const name = getLocalized(card.name) || '—';
   const country = getCountryLabel(card.country) || '—';
   const currentSection = card.section || 'General';
-  const sectionOptions = sections.map(s =>
-    `<option value="${s}" ${s === currentSection ? 'selected' : ''}>${getSectionLabel(s)}</option>`
-  ).join('');
+  const sectionOptions = sections.map(s => `<option value="${s}" ${s === currentSection ? 'selected' : ''}>${getSectionLabel(s)}</option>`).join('');
   document.getElementById('modalTitle').textContent = name;
-  document.getElementById('modalBody').innerHTML = `
-    <div class="detail-hero">
-      <span class="big-number">#${card.cardId || '?'}</span>
-      ${card.photo ? `<img src="${card.photo}" alt="${name}" />` : ''}
-      <div class="big-name">${name}</div><div class="big-country">${country}</div>
-    </div>
-    <div class="stats-row">
-      <div class="stat-box defence"><div class="label">${t('defence')}</div><div class="value">${card.defence ?? '—'}</div></div>
-      <div class="stat-box midfield"><div class="label">${t('midfield')}</div><div class="value">${card.midfield ?? '—'}</div></div>
-      <div class="stat-box attack"><div class="label">${t('attack')}</div><div class="value">${card.attack ?? '—'}</div></div>
-      <div class="stat-box total"><div class="label">${t('total')}</div><div class="value">${card.total ?? '—'}</div></div>
-    </div>
-    <div class="info-list">
-      <div class="info-row"><span>${t('cardId')}</span><span>${card.cardId || '—'}</span></div>
-      <div class="info-row"><span>${t('country')}</span><span>${country}</span></div>
-      <div class="info-row"><span>${t('owned')}</span><span>${card.quantity || 1}×</span></div>
-    </div>
-    <div class="form-group" style="margin-bottom:16px;">
-      <label>${t('section')}</label>
-      <select id="detailSectionSelect" class="filter-select" style="width:100%;">${sectionOptions}</select>
-    </div>
-    <div class="btn-row" style="margin-bottom:12px;">
-      <button class="btn btn-primary" onclick="changeCardSection('${id}')">${t('moveSection')}</button>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-danger" onclick="removeOne('${id}')">${t('removeOne')}</button>
-      <button class="btn btn-secondary" onclick="addDuplicate('${id}')">${t('addDuplicate')}</button>
-    </div>`;
+  document.getElementById('modalBody').innerHTML = `<div class="detail-hero"><span class="big-number">#${card.cardId || '?'}</span>${card.photo ? `<img src="${card.photo}" alt="${name}" />` : ''}<div class="big-name">${name}</div><div class="big-country">${country}</div></div><div class="stats-row"><div class="stat-box defence"><div class="label">${t('defence')}</div><div class="value">${card.defence ?? '—'}</div></div><div class="stat-box midfield"><div class="label">${t('midfield')}</div><div class="value">${card.midfield ?? '—'}</div></div><div class="stat-box attack"><div class="label">${t('attack')}</div><div class="value">${card.attack ?? '—'}</div></div><div class="stat-box total"><div class="label">${t('total')}</div><div class="value">${card.total ?? '—'}</div></div></div><div class="info-list"><div class="info-row"><span>${t('cardId')}</span><span>${card.cardId || '—'}</span></div><div class="info-row"><span>${t('country')}</span><span>${country}</span></div><div class="info-row"><span>${t('owned')}</span><span>${card.quantity || 1}×</span></div></div><div class="form-group" style="margin-bottom:16px;"><label>${t('section')}</label><select id="detailSectionSelect" class="filter-select" style="width:100%;">${sectionOptions}</select></div><div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-primary" onclick="changeCardSection('${id}')">${t('moveSection')}</button></div><div class="btn-row"><button class="btn btn-danger" onclick="removeOne('${id}')">${t('removeOne')}</button><button class="btn btn-secondary" onclick="addDuplicate('${id}')">${t('addDuplicate')}</button></div>`;
   document.getElementById('detailModal').classList.add('open');
 }
 function changeCardSection(id) {
@@ -415,9 +487,9 @@ document.getElementById('addForm').addEventListener('submit', function(e) {
 });
 function switchView(viewId) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
   document.getElementById(viewId).classList.add('active');
-  document.querySelector(`.tab[data-view="${viewId}"]`).classList.add('active');
+  document.querySelector('.tab[data-view="' + viewId + '"]').classList.add('active');
   if (viewId === 'collection') renderCollection(document.getElementById('searchCollection').value);
 }
 document.querySelectorAll('.tab').forEach(tab => {
@@ -428,7 +500,6 @@ document.getElementById('detailModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 
-// PWA install
 let deferredInstallPrompt = null;
 const INSTALL_DISMISS_KEY = 'fifa365_install_dismissed';
 function isStandalone() {
@@ -436,8 +507,7 @@ function isStandalone() {
 }
 function isIos() { return /iphone|ipad|ipod/i.test(navigator.userAgent); }
 function updateInstallBannerText() {
-  document.getElementById('installBannerText').innerHTML =
-    `<strong>${t('installTitle')}</strong><br>${t('installBody')}`;
+  document.getElementById('installBannerText').innerHTML = '<strong>' + t('installTitle') + '</strong><br>' + t('installBody');
   document.getElementById('installDismissBtn').textContent = t('installDismiss');
   document.getElementById('installAcceptBtn').textContent = t('installAccept');
   const iosEl = document.getElementById('installIosSteps');
@@ -463,7 +533,7 @@ function dismissInstallBanner() {
 async function acceptInstall() {
   if (deferredInstallPrompt) {
     deferredInstallPrompt.prompt();
-    const choice = await deferredInstallPrompt.userChoice;
+    await deferredInstallPrompt.userChoice;
     deferredInstallPrompt = null;
     dismissInstallBanner();
   } else if (isIos()) {
@@ -482,7 +552,7 @@ window.addEventListener('appinstalled', () => {
 });
 if (isIos() && !isStandalone()) setTimeout(showInstallBanner, 2000);
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 
 loadData();
